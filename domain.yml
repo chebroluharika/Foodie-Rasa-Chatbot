@@ -1,0 +1,121 @@
+actions:
+- action_chk_location
+- action_search_restaurants
+- action_send_email
+- action_verify_cuisine
+- utter_ask_budget
+- utter_ask_cuisine
+- utter_ask_email
+- utter_ask_email_id
+- utter_ask_location
+- utter_default
+- utter_email_conf
+- utter_email_sent
+- utter_goodbye
+- utter_greet
+- utter_no_results_found
+entities:
+- budget-min
+- budget_max
+- budget_min
+- cuisine
+- email_id
+- location
+intents:
+- greet
+- deny
+- restaurant_search
+- affirm
+- send_mail
+- goodbye
+- thankyou
+- dont_send_email
+responses:
+  utter_ask_budget:
+  - buttons:
+    - payload: /restaurant_search{"budget_min":"0","budget_max":"300"}
+      title: Lesser than Rs. 300
+    - payload: /restaurant_search{"budget_min":"300","budget_max":"700"}
+      title: Rs. 300 to 700
+    - payload: /restaurant_search{"budget_min":"700","budget_max":"10000"}
+      title: More than 700
+    text: What price range are you looking for?
+  utter_ask_cuisine:
+  - buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Mexican
+      title: Mexican
+    - payload: Italian
+      title: Italian
+    - payload: American
+      title: American
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+    text: what kind of cuisine would you like?
+  utter_ask_email:
+  - text: Do you want a list of top 10 restaurants in your email?
+  - buttons:
+    - payload: /send_mail
+      title: Yes
+    - payload: /dont_send_email
+      title: No
+    text: Should I send you details of all the restaurants on email?
+  utter_ask_email_id:
+  - text: Please, enter your email id.
+  - text: Ok great, please enter your email id.
+  - text: To what email id should I send it to?
+  utter_ask_howcanhelp:
+  - text: how can I help you?
+  utter_ask_location:
+  - text: In what location?
+  utter_default:
+  - text: Sorry! I do not understand. Could you please be more clear?
+  utter_email_conf:
+  - text: Should I send you details of all the restaurants on email?
+  utter_email_sent:
+  - text: Sent
+  - text: Sent. Bon Appetit!
+  utter_goodbye:
+  - text: Okay. Bon Appetit!
+  - text: Bye-bye
+  utter_greet:
+  - text: Hey there! How may I help you?
+  - text: Hi, How can I help you?
+  - text: Hey, How is it going? How may I help you today?
+  - text: Hi! What would you like me to search for you?
+  utter_no_results_found:
+  - text: Sorry, No results found for your criteria. Would you like to search for
+      some other restaurants?
+session_config:
+  carry_over_slots_to_new_session: true
+  session_expiration_time: 0
+slots:
+  budget_max:
+    initial_value: 10000.0
+    max_value: 1.0
+    min_value: 0.0
+    type: float
+  budget_min:
+    initial_value: 0.0
+    max_value: 1.0
+    min_value: 0.0
+    type: float
+  budget_ok:
+    type: bool
+  cuisine:
+    type: text
+  cuisine_ok:
+    initial_value: false
+    type: bool
+  email_id:
+    type: text
+  location:
+    type: text
+  location_ok:
+    type: text
+  restaurant_exist:
+    initial_value: false
+    type: bool

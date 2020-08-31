@@ -1,0 +1,1 @@
+rasa train nlu && rasa train core && rasa run actions
